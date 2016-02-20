@@ -15,7 +15,7 @@ LEDMatrix::LEDMatrix(int width, int height) {
 	bcm2835_init();
 	bcm2835_spi_begin();
 
-	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_64);
+	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_32);
 }
 
 LEDMatrix::~LEDMatrix() {
@@ -83,7 +83,7 @@ void LEDMatrix::Display() const {
 		outBuffer[offset+2] = 0x00;
 		outBuffer[offset+3] = 0x00;
 	}
-
+/*
 	for(int i = 0; i < byteSize; i+= 4) {
 		if(!(i % (4*width)))
 			std::cout << std::endl;
@@ -91,7 +91,7 @@ void LEDMatrix::Display() const {
 		std::cout << std::hex << std::setw(2) << (int)((unsigned char)outBuffer[i+4]) << std::hex << std::setw(2) << (int)((unsigned char)outBuffer[i+5]);
 		std::cout << std::hex << std::setw(2) << (int)((unsigned char)outBuffer[i+6]) << std::hex << std::setw(2) << (int)((unsigned char)outBuffer[i+7]) << "  ";
 	}
-
+*/
 	bcm2835_spi_transfern(outBuffer, byteSize);
 
 	delete[] outBuffer;

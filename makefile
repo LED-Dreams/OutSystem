@@ -8,14 +8,17 @@ VPATH=source
 
 all: Output
 
-Output: Output.o LEDMatrix.o Color.o
+Output: Output.o LEDMatrixDraw.o LEDMatrix.o Color.o
 	g++ $(CFLAGS) Color.o LEDMatrix.o LEDMatrixDraw.o Output.o -o Output -lbcm2835
 
 Output.o: $(srcdir)/Output.cpp $(srcdir)/Output.hpp
 	g++ $(CFLAGS) -c $(srcdir)/Output.cpp
 
-LEDMatrix.o: $(srcdir)/LEDMatrix.cpp $(srcdir)/LEDMatrixDraw.cpp $(srcdir)/LEDMatrix.hpp
-	g++ $(CFLAGS) -c $(srcdir)/LEDMatrix.cpp $(srcdir)/LEDMatrixDraw.cpp
+LEDMatrixDraw.o: $(srcdir)/LEDMatrixDraw.cpp $(srcdir)/LEDMatrix.hpp
+	g++ $(CFLAGS) -c $(srcdir)/LEDMatrixDraw.cpp
+
+LEDMatrix.o: $(srcdir)/LEDMatrix.cpp $(srcdir)/LEDMatrix.hpp
+	g++ $(CFLAGS) -c $(srcdir)/LEDMatrix.cpp
 
 Color.o: $(srcdir)/Color.cpp $(srcdir)/Color.hpp
 	g++ $(CFLAGS) -c $(srcdir)/Color.cpp
