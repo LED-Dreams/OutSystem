@@ -16,6 +16,8 @@ public:
 	LEDMatrix(int width, int height);
 	~LEDMatrix();
 
+	void Clear();
+
 	Color GetPixel(int width, int height) const;
 	void SetPixel(int width, int height, const Color &c);
 

@@ -15,11 +15,15 @@ LEDMatrix::LEDMatrix(int width, int height) {
 	bcm2835_init();
 	bcm2835_spi_begin();
 
-	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_32);
+	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_128);
 }
 
 LEDMatrix::~LEDMatrix() {
 	bcm2835_spi_end();
+}
+
+void LEDMatrix::Clear() {
+	Fill(Color(0, 0, 0));
 }
 
 Color LEDMatrix::GetPixel(int width, int height) const {
